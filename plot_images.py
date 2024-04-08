@@ -1,11 +1,13 @@
 """Module for plotting images."""
 
 import csv
+import os
 from dataclasses import dataclass
 
 import matplotlib.pyplot as plt
 
-from newlime_utils import load_dataset
+from rlime.rlime_types import IntArray, Rule
+from rlime.utils import get_trg_sample, load_dataset
 
 
 @dataclass
@@ -21,30 +23,35 @@ def main() -> None:
     """The main function of the module."""
 
     # Load the dataset.
-    dataset = load_dataset("recidivism", "datasets/", balance=True)
+    dataset = load_dataset(
+        "recidivism", "rlime/examples/datasets/", balance=True
+    )
 
     for idx in range(50):
 
+        trg, _, _ = get_trg_sample(idx, dataset)
+
         # Load the weights.
-        csv_name = f"output/lime-{idx:04d}.csv"
-        result = load_weights(csv_name)
+        csv_name = f"examples/lime-{idx:04d}.csv"
+        result = load_weights(csv_name, trg, dataset.categorical_names)
+
         if result is not None:
             weights, _ = result
 
             # Plot the weights.
-            img_name = f"output/lime-{idx:04d}.eps"
+            img_name = f"examples/lime-{idx:04d}.eps"
             plot_weights(weights, dataset.feature_names, img_name=img_name)
 
         for tau in [70, 80, 90]:
 
             # Load the weights.
-            csv_name = f"output/newlime-{idx:04d}-{tau}.csv"
-            result = load_weights(csv_name)
+            csv_name = f"examples/newlime-{idx:04d}-{tau}.csv"
+            result = load_weights(csv_name, trg, dataset.categorical_names)
             if result is not None:
                 weights, rule_info = result
 
                 # Plot the weights.
-                img_name = f"output/newlime-{idx:04d}-{tau}.eps"
+                img_name = f"examples/newlime-{idx:04d}-{tau}.eps"
                 plot_weights(
                     weights,
                     dataset.feature_names,
@@ -54,7 +61,7 @@ def main() -> None:
 
 
 def load_weights(
-    path: str,
+    path: str, trg: IntArray, categorical_names: dict[int, list[str]]
 ) -> tuple[list[float], RuleInfo | None] | None:
     """Load the weights from a CSV file.
 
@@ -69,13 +76,24 @@ def load_weights(
         The weights and the rule information.
     """
 
+    def get_names(
+        trg: IntArray, rule: Rule, categorical_names: dict[int, list[str]]
+    ) -> list[str]:
+        """get the names of the features in the rule"""
+
+        names = []
+        for r in rule:
+            names.append(categorical_names[r][int(trg[r])])
+        return names
+
     try:
         with open(path, "r", encoding="utf-8") as f:
             reader = csv.reader(f)
             weights = list(map(float, next(reader)))
             rule_info = None
             try:
-                rule_str = next(reader)
+                rule = tuple(map(int, next(reader)))
+                rule_str = get_names(trg, rule, categorical_names)
                 coverage, precision = next(reader)
                 rule_info = RuleInfo(
                     rule_str, float(precision), float(coverage)
@@ -84,6 +102,7 @@ def load_weights(
                 pass
             return weights, rule_info
     except FileNotFoundError:
+        print(f"File {path} not found.")
         return None
 
 
@@ -161,6 +180,9 @@ def plot_weights(
         plt.text(v, f, round(v, 5), fontsize=12)
 
     if img_name is not None:
+        if not os.path.exists(os.path.dirname(img_name)):
+            os.makedirs(os.path.dirname(img_name))
+
         plt.savefig(img_name, bbox_inches="tight")
 
     plt.close()

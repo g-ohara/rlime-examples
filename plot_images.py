@@ -33,7 +33,13 @@ def main() -> None:
 
         # Load the weights.
         csv_name = f"examples/lime-{idx:04d}.csv"
-        result = load_weights(csv_name, trg, dataset.categorical_names)
+        result = load_weights(
+            csv_name,
+            trg,
+            dataset.feature_names,
+            dataset.categorical_names,
+            dataset.ordinal_features,
+        )
 
         if result is not None:
             weights, _ = result
@@ -46,7 +52,13 @@ def main() -> None:
 
             # Load the weights.
             csv_name = f"examples/newlime-{idx:04d}-{tau}.csv"
-            result = load_weights(csv_name, trg, dataset.categorical_names)
+            result = load_weights(
+                csv_name,
+                trg,
+                dataset.feature_names,
+                dataset.categorical_names,
+                dataset.ordinal_features,
+            )
             if result is not None:
                 weights, rule_info = result
 
@@ -61,7 +73,11 @@ def main() -> None:
 
 
 def load_weights(
-    path: str, trg: IntArray, categorical_names: dict[int, list[str]]
+    path: str,
+    trg: IntArray,
+    feature_names: list[str],
+    categorical_names: dict[int, list[str]],
+    ordinal_features: list[int],
 ) -> tuple[list[float], RuleInfo | None] | None:
     """Load the weights from a CSV file.
 
@@ -77,13 +93,20 @@ def load_weights(
     """
 
     def get_names(
-        trg: IntArray, rule: Rule, categorical_names: dict[int, list[str]]
+        trg: IntArray,
+        rule: Rule,
+        feature_names: list[str],
+        categorical_names: dict[int, list[str]],
+        ordinal_features: list[int],
     ) -> list[str]:
         """get the names of the features in the rule"""
 
         names = []
         for r in rule:
-            names.append(categorical_names[r][int(trg[r])])
+            name = categorical_names[r][int(trg[r])]
+            if r not in ordinal_features:
+                name = feature_names[r] + " = " + name
+            names.append(name)
         return names
 
     try:
@@ -93,8 +116,14 @@ def load_weights(
             rule_info = None
             try:
                 rule = tuple(map(int, next(reader)))
-                rule_str = get_names(trg, rule, categorical_names)
-                coverage, precision = next(reader)
+                rule_str = get_names(
+                    trg,
+                    rule,
+                    feature_names,
+                    categorical_names,
+                    ordinal_features,
+                )
+                precision, coverage = next(reader)
                 rule_info = RuleInfo(
                     rule_str, float(precision), float(coverage)
                 )

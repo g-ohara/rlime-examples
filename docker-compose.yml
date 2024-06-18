@@ -1,8 +1,0 @@
-services:
-  python:
-    image: genjiohara/python
-    container_name: rlime-examples
-    volumes:
-      - ./:/root/workspace
-    working_dir: /root/workspace
-    tty: true

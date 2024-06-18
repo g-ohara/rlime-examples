@@ -23,9 +23,7 @@ def main() -> None:
     """The main function of the module."""
 
     # Load the dataset.
-    dataset = load_dataset(
-        "recidivism", "rlime/examples/datasets/", balance=True
-    )
+    dataset = load_dataset("recidivism", "src/rlime/examples/datasets/", balance=True)
 
     for idx in range(50):
 
@@ -124,9 +122,7 @@ def load_weights(
                     ordinal_features,
                 )
                 precision, coverage = next(reader)
-                rule_info = RuleInfo(
-                    rule_str, float(precision), float(coverage)
-                )
+                rule_info = RuleInfo(rule_str, float(precision), float(coverage))
             except StopIteration:
                 pass
             return weights, rule_info

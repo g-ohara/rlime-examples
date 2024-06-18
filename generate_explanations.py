@@ -5,11 +5,10 @@ import multiprocessing
 
 from sklearn.ensemble import RandomForestClassifier  # type: ignore
 
-from rlime import rlime_lime, utils
-from rlime.rlime import HyperParam, explain_instance
-from rlime.rlime_types import Classifier, Dataset, IntArray, Rule
-from rlime.sampler import Sampler
-from rlime.utils import RuleInfo
+from src.rlime import rlime_lime, utils
+from src.rlime.rlime import HyperParam, explain_instance
+from src.rlime.rlime_types import Classifier, Dataset, IntArray, Rule
+from src.rlime.sampler import Sampler
 
 
 def sample_to_csv(
@@ -54,7 +53,7 @@ def main() -> None:
 
     # Load the dataset.
     dataset = utils.load_dataset(
-        "recidivism", "rlime/examples/datasets/", balance=True
+        "recidivism", "src/rlime/examples/datasets/", balance=True
     )
 
     # Learn the black box model.

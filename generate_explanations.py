@@ -2,12 +2,17 @@
 
 import csv
 import multiprocessing
+from logging import getLogger
 
+from log import arg_to_log_level
 from rlime.src.rlime import rlime_lime, utils
 from rlime.src.rlime.rlime import HyperParam, explain_instance
 from rlime.src.rlime.rlime_types import Classifier, Dataset, IntArray, Rule
 from rlime.src.rlime.sampler import Sampler
 from sklearn.ensemble import RandomForestClassifier  # type: ignore
+from tqdm import tqdm
+
+logger = getLogger(__name__)
 
 
 def sample_to_csv(tab: list[tuple[str, str]], path: str) -> None:
@@ -46,6 +51,9 @@ def save_weights(
 
 def main() -> None:
     """The main function of the module."""
+    # Get log level.
+    arg_to_log_level()
+
     # Load the dataset.
     dataset = utils.load_dataset(
         "recidivism", "src/rlime/src/rlime/datasets/", balance=True,
@@ -68,14 +76,12 @@ def main() -> None:
         labels_trgs.append(label)
         sample_to_csv(tab, f"examples/{idx:04d}.csv")
 
+    args = [
+        (idx, trg, dataset, black_box.predict)
+        for idx, trg in zip(idx_list, trgs)
+    ]
     with multiprocessing.Pool() as pool:
-        pool.starmap(
-            generate_lime_and_rlime,
-            [
-                (idx, trg, dataset, black_box.predict)
-                for idx, trg in zip(idx_list, trgs)
-            ],
-        )
+        pool.starmap(generate_lime_and_rlime, tqdm(args))
 
 
 def generate_lime_and_rlime(
@@ -85,17 +91,17 @@ def generate_lime_and_rlime(
     black_box: RandomForestClassifier,
 ) -> None:
     """Generate the LIME and R-LIME explanations for the given sample."""
-    print(f"Target instance: {idx}")
+    logger.info("Target instance: %s", idx)
 
     # Generate the LIME explanation and save it as an image.
-    print("LIME")
+    logger.info(" LIME")
     generate_lime(trg, dataset, black_box, f"examples/lime-{idx:04d}.csv")
 
     # Generate the R-LIME explanation and save it as an image.
-    print("R-LIME")
+    logger.info(" R-LIME")
     hyper_param = HyperParam()
     for hyper_param.tau in [0.7, 0.8, 0.9]:
-        print(f"tau = {hyper_param.tau}")
+        logger.info("  tau = %s", hyper_param.tau)
         generate_rlime(
             trg,
             dataset,
@@ -128,7 +134,7 @@ def generate_rlime(
     # Generate the R-LIME explanation and standardize its weights.
     result = explain_instance(trg, dataset, black_box, hyper_param)
     if result is None:
-        print("No explanation found.")
+        logger.warning("   No explanation found. (img_name: %s)", img_name)
         return
     names, arm = result
     weights = list(arm.surrogate_model["LogisticRegression"].weights.values())

@@ -3,10 +3,15 @@
 import csv
 import os
 from dataclasses import dataclass
+from logging import getLogger
 
 import matplotlib.pyplot as plt
+from log import arg_to_log_level
 from rlime.src.rlime.rlime_types import IntArray, Rule
 from rlime.src.rlime.utils import get_trg_sample, load_dataset
+from tqdm import tqdm
+
+logger = getLogger(__name__)
 
 
 @dataclass
@@ -20,12 +25,17 @@ class RuleInfo:
 
 def main() -> None:
     """The main function of the module."""
+    # Get log level.
+    arg_to_log_level()
+
     # Load the dataset.
     dataset = load_dataset(
         "recidivism", "src/rlime/src/rlime/datasets/", balance=True,
     )
 
-    for idx in range(50):
+    for idx in tqdm(range(50)):
+        logger.info("Target instance: %s", idx)
+        logger.info(" LIME:")
         trg, _, _ = get_trg_sample(idx, dataset)
 
         # Load the weights.
@@ -38,15 +48,19 @@ def main() -> None:
             dataset.ordinal_features,
         )
 
-        if result is not None:
+        # Plot the weights.
+        if result is None:
+            logger.warning("  Not found.")
+        else:
+            logger.debug("  Found.")
             weights, _ = result
-
-            # Plot the weights.
             img_name = f"examples/lime-{idx:04d}.eps"
             plot_weights(weights, dataset.feature_names, img_name=img_name)
 
+        logger.info(" R-LIME:")
         for tau in [70, 80, 90]:
             # Load the weights.
+            logger.debug("  tau = %s:", tau)
             csv_name = f"examples/newlime-{idx:04d}-{tau}.csv"
             result = load_weights(
                 csv_name,
@@ -55,10 +69,13 @@ def main() -> None:
                 dataset.categorical_names,
                 dataset.ordinal_features,
             )
-            if result is not None:
-                weights, rule_info = result
 
-                # Plot the weights.
+            # Plot the weights.
+            if result is None:
+                logger.warning("  Not found.")
+            else:
+                logger.debug("  Found.")
+                weights, rule_info = result
                 img_name = f"examples/newlime-{idx:04d}-{tau}.eps"
                 plot_weights(
                     weights,
@@ -127,7 +144,7 @@ def load_weights(
                 pass
             return weights, rule_info
     except FileNotFoundError:
-        print(f"File {path} not found.")
+        logger.warning("File %s not found.", path)
         return None
 
 

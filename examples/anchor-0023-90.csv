@@ -1,0 +1,2 @@
+Priors = 2,Crime against Property = Yes,9.00 < MonthsServed <= 24.00,Felony = No,Gender = Male,10.00 < YearsSchool <= 11.00,PrisonViolations = 0,Crime against Person = No,Supervised Release = Yes,Alcohol = No,Age > 33.00
+0.9074074074074074,0.0005

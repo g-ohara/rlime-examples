@@ -1,0 +1,2 @@
+Priors = 3,9.00 < MonthsServed <= 24.00,Felony = No,Gender = Male,PrisonViolations = 0
+0.8089368258859785,0.0079

@@ -10,19 +10,14 @@ from typing import TYPE_CHECKING
 
 from rlime.src.rlime import rlime_lime, utils
 from rlime.src.rlime.rlime import HyperParam, explain_instance
+from rlime.src.rlime.rlime_anchor import anchor
 from rlime.src.rlime.sampler import Sampler
 from rlime_examples.log import arg_to_log_level
 from sklearn.ensemble import RandomForestClassifier
 from tqdm import tqdm
 
 if TYPE_CHECKING:
-    from rlime.src.rlime.rlime_types import (
-        Classifier,
-        Dataset,
-        FloatArray,
-        IntArray,
-        Rule,
-    )
+    from rlime.src.rlime.rlime_types import Classifier, Dataset, IntArray, Rule
 
 logger = getLogger(__name__)
 
@@ -73,7 +68,7 @@ def main() -> None:
 
     # Learn the black box model.
     black_box = RandomForestClassifier(n_estimators=100, n_jobs=1)
-    black_box.fit(dataset.train, dataset.labels_train)  # type: ignore
+    black_box.fit(dataset.train, dataset.labels_train)
 
     # Get the target instances.
     sample_num = 50
@@ -88,15 +83,14 @@ def main() -> None:
         labels_trgs.append(label)
         sample_to_csv(tab, f"examples/{idx:04d}.csv")
 
-    def predict(x: FloatArray) -> IntArray:
-        return black_box.predict(x).astype(int)  # type: ignore
-
+    predict: Classifier = black_box.predict
     args = [(idx, trg, dataset, predict) for idx, trg in zip(idx_list, trgs)]
+
     with multiprocessing.Pool() as pool:
-        pool.starmap(generate_lime_and_rlime, tqdm(args))
+        pool.starmap(generate_examples, tqdm(args))
 
 
-def generate_lime_and_rlime(
+def generate_examples(
     idx: int, trg: IntArray, dataset: Dataset, black_box: Classifier
 ) -> None:
     """Generate the LIME and R-LIME explanations for the given sample."""
@@ -105,6 +99,17 @@ def generate_lime_and_rlime(
     # Generate the LIME explanation and save it as an image.
     logger.info(" LIME")
     generate_lime(trg, dataset, black_box, f"examples/lime-{idx:04d}.csv")
+
+    # Generate the Anchor explanation and save it as an image.
+    logger.info(" Anchor")
+    for tau in [70, 80, 90]:
+        generate_anchor(
+            trg,
+            dataset,
+            black_box,
+            f"examples/anchor-{idx:04d}-{tau}.csv",
+            tau,
+        )
 
     # Generate the R-LIME explanation and save it as an image.
     logger.info(" R-LIME")
@@ -126,10 +131,30 @@ def generate_lime(
     """Generate the LIME explanation for the given sample."""
     # Generate the LIME explanation.
     sampler = Sampler(trg, dataset.train, black_box, dataset.categorical_names)
-    coef, _ = rlime_lime.explain(trg, sampler, 100000)  # type: ignore
+    coef, _ = rlime_lime.explain(trg, sampler, 100000)
 
     # Save the LIME explanation as an image.
     save_weights(img_name, coef)
+
+
+def generate_anchor(
+    trg: IntArray,
+    dataset: Dataset,
+    black_box: Classifier,
+    img_name: str,
+    tau: float,
+) -> None:
+    """Generate the Anchor explanation for the given sample."""
+    try:
+        rule_strs, acc, cov = anchor(trg, dataset, black_box, tau / 100)
+        with Path(img_name).open(mode="w", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(rule_strs)
+            writer.writerow([acc, cov])
+
+    except Exception as e:
+        logger.warning("  No explanation found.")
+        logger.warning("  %s", e)
 
 
 def generate_rlime(
@@ -148,7 +173,7 @@ def generate_rlime(
     _, arm = result
 
     weights: list[float] = list(
-        arm.surrogate_model["LogisticRegression"].weights.values()  # type: ignore
+        arm.surrogate_model["LogisticRegression"].weights.values()
     )
     weights = [w / sum(map(abs, weights)) for w in weights]
 

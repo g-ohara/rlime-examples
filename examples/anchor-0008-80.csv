@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,Crime against Person = No,Supervised Release = Yes,Gender = Male,Alcohol = No,Junky = No,Race = White,26.00 < Age <= 33.00,MonthsServed <= 4.00
+0.9727891156462585,0.0005

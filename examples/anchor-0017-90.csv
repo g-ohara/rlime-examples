@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,Crime against Property = No,PrisonViolations = 0,8.00 < YearsSchool <= 10.00,Junky = No
+0.9269311064718163,0.0137

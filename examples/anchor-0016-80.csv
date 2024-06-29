@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,YearsSchool > 11.00,Crime against Property = No
+0.8404423380726699,0.0202

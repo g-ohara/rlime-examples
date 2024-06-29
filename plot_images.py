@@ -62,6 +62,12 @@ def main() -> None:
             img_name = f"examples/lime-{idx:04d}.eps"
             plot_weights(weights, dataset.feature_names, img_name=img_name)
 
+        logger.info(" Anchor:")
+        for tau in [70, 80, 90]:
+            csv_name = f"examples/anchor-{idx:04d}-{tau}.csv"
+            img_name = f"examples/anchor-{idx:04d}-{tau}.eps"
+            plot_anchor(csv_name, img_name)
+
         logger.info(" R-LIME:")
         for tau in [70, 80, 90]:
             # Load the weights.
@@ -119,7 +125,7 @@ def load_weights(
         ordinal_features: list[int],
     ) -> list[str]:
         """Get the names of the features in the rule."""
-        names = []
+        names: list[str] = []
         for r in rule:
             name = categorical_names[r][int(trg[r])]
             if r not in ordinal_features:
@@ -153,6 +159,70 @@ def load_weights(
         return None
 
 
+def concat_names(names: list[str]) -> str:
+    """Concatenate the names to multiline string.
+
+    Concatenate the names to multiline string,
+    such that the string length is less than the specified length.
+    """
+    multiline_names: list[str] = []
+    line: list[str] = []
+    line_len = 0
+    and_len = len(" AND ")
+    max_len = 50
+
+    for name in names:
+        if line_len + and_len + len(name) > max_len and len(line) > 0:
+            multiline_names.append(" AND ".join(line))
+            line = [name]
+            line_len = len(name)
+        else:
+            line.append(name)
+            line_len += len(name) + and_len
+
+    multiline_names.append(" AND ".join(line))
+    return " AND \n".join(multiline_names)
+
+
+def plot_anchor(csv_name: str, img_name: str) -> None:
+    """Create image of the output of Anchor.
+
+    Parameters
+    ----------
+    csv_name : str
+        The name of the CSV file from which the output is loaded.
+    img_name : str
+        The name of the image to be created.
+    """
+    # Load the CSV file.
+    logger.debug("  Loading %s ...", csv_name)
+    try:
+        with Path(csv_name).open(encoding="utf-8") as f:
+            reader = csv.reader(f)
+            predicate_strs = list(map(str, next(reader)))
+            acc_str, cov_str = next(reader)
+    except FileNotFoundError:
+        logger.warning("File %s not found.", csv_name)
+        return
+    rule_str = concat_names(predicate_strs)
+    acc_percent = 100 * float(acc_str)
+    cov_percent = 100 * float(cov_str)
+
+    # Plot the image.
+    logger.debug("  Plotting %s ...", img_name)
+    fig, ax = plt.subplots()  # type: ignore
+    ax.set_visible(False)
+    fig.suptitle(  # type: ignore
+        f"{rule_str}\n"
+        f"with Accuracy {acc_percent:.2f}% "
+        f"and Coverage {cov_percent:.2f}%",
+        fontsize=15,
+    )
+    Path.mkdir(Path(img_name).parent, parents=True, exist_ok=True)
+    plt.savefig(img_name, bbox_inches="tight")  # type: ignore
+    plt.close()
+
+
 def plot_weights(
     weights: list[float],
     feature_names: list[str],
@@ -182,43 +252,19 @@ def plot_weights(
     _, sorted_features, sorted_values = zip(
         *sorted(zip(abs_values, features, weights), reverse=False)[-5:]
     )
-    plt.figure()
+    plt.figure()  # type: ignore
     color = [
         "#32a852" if sorted_values[i] > 0 else "#cf4529"
         for i in range(len(sorted_values))
     ]
-    plt.rc("ytick", labelsize=12)
-    plt.barh(sorted_features, sorted_values, color=color)
-
-    def concat_names(names: list[str]) -> str:
-        """Concatenate the names to multiline string.
-
-        Concatenate the names to multiline string,
-        such that the string length is less than the specified length.
-        """
-        multiline_names = []
-        line: list[str] = []
-        line_len = 0
-        and_len = len(" AND ")
-        max_len = 50
-
-        for name in names:
-            if line_len + and_len + len(name) > max_len and len(line) > 0:
-                multiline_names.append(" AND ".join(line))
-                line = [name]
-                line_len = len(name)
-            else:
-                line.append(name)
-                line_len += len(name) + and_len
-
-        multiline_names.append(" AND ".join(line))
-        return " AND \n".join(multiline_names)
+    plt.rc("ytick", labelsize=12)  # type: ignore
+    plt.barh(sorted_features, sorted_values, color=color)  # type: ignore
 
     if rule_info is not None:
         anchor_str = concat_names(rule_info.rule_str)
         acc_perc = rule_info.precision * 100
         cov_perc = rule_info.coverage * 100
-        plt.title(
+        plt.title(  # type: ignore
             f"{anchor_str}\n"
             f"with Accuracy {acc_perc:.2f}% "
             f"and Coverage {cov_perc:.2f}%",
@@ -226,11 +272,11 @@ def plot_weights(
         )
 
     for f, v in zip(sorted_features, sorted_values):
-        plt.text(v, f, round(v, 5), fontsize=12)
+        plt.text(v, f, round(v, 5), fontsize=12)  # type: ignore
 
     if img_name is not None:
         Path.mkdir(Path(img_name).parent, parents=True, exist_ok=True)
-        plt.savefig(img_name, bbox_inches="tight")
+        plt.savefig(img_name, bbox_inches="tight")  # type: ignore
 
     plt.close()
 

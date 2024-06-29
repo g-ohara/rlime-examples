@@ -1,22 +1,27 @@
 """Module for plotting images."""
 
+from __future__ import annotations
+
 import csv
-import os
 from dataclasses import dataclass
 from logging import getLogger
+from pathlib import Path
+from typing import TYPE_CHECKING
 
 import matplotlib.pyplot as plt
-from log import arg_to_log_level
-from rlime.src.rlime.rlime_types import IntArray, Rule
 from rlime.src.rlime.utils import get_trg_sample, load_dataset
+from rlime_examples.log import arg_to_log_level
 from tqdm import tqdm
+
+if TYPE_CHECKING:
+    from rlime.src.rlime.rlime_types import IntArray, Rule
 
 logger = getLogger(__name__)
 
 
 @dataclass
 class RuleInfo:
-    """Rule information"""
+    """Rule information."""
 
     rule_str: list[str]
     precision: float
@@ -30,7 +35,7 @@ def main() -> None:
 
     # Load the dataset.
     dataset = load_dataset(
-        "recidivism", "src/rlime/src/rlime/datasets/", balance=True,
+        "recidivism", "src/rlime/src/rlime/datasets/", balance=True
     )
 
     for idx in tqdm(range(50)):
@@ -113,7 +118,7 @@ def load_weights(
         categorical_names: dict[int, list[str]],
         ordinal_features: list[int],
     ) -> list[str]:
-        """Get the names of the features in the rule"""
+        """Get the names of the features in the rule."""
         names = []
         for r in rule:
             name = categorical_names[r][int(trg[r])]
@@ -123,7 +128,7 @@ def load_weights(
         return names
 
     try:
-        with open(path, encoding="utf-8") as f:
+        with Path(path).open(encoding="utf-8") as f:
             reader = csv.reader(f)
             weights = list(map(float, next(reader)))
             rule_info = None
@@ -138,7 +143,7 @@ def load_weights(
                 )
                 precision, coverage = next(reader)
                 rule_info = RuleInfo(
-                    rule_str, float(precision), float(coverage),
+                    rule_str, float(precision), float(coverage)
                 )
             except StopIteration:
                 pass
@@ -175,7 +180,7 @@ def plot_weights(
     features = feature_names
     abs_values = [abs(x) for x in weights]
     _, sorted_features, sorted_values = zip(
-        *sorted(zip(abs_values, features, weights), reverse=False)[-5:],
+        *sorted(zip(abs_values, features, weights), reverse=False)[-5:]
     )
     plt.figure()
     color = [
@@ -186,8 +191,10 @@ def plot_weights(
     plt.barh(sorted_features, sorted_values, color=color)
 
     def concat_names(names: list[str]) -> str:
-        """Concatenate the names to multiline string such that the string
-        length is less than the specified length
+        """Concatenate the names to multiline string.
+
+        Concatenate the names to multiline string,
+        such that the string length is less than the specified length.
         """
         multiline_names = []
         line: list[str] = []
@@ -222,9 +229,7 @@ def plot_weights(
         plt.text(v, f, round(v, 5), fontsize=12)
 
     if img_name is not None:
-        if not os.path.exists(os.path.dirname(img_name)):
-            os.makedirs(os.path.dirname(img_name))
-
+        Path.mkdir(Path(img_name).parent, parents=True, exist_ok=True)
         plt.savefig(img_name, bbox_inches="tight")
 
     plt.close()

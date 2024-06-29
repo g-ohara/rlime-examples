@@ -1,23 +1,35 @@
 """This module generates the experiment data for the paper."""
 
+from __future__ import annotations
+
 import csv
 import multiprocessing
 from logging import getLogger
+from pathlib import Path
+from typing import TYPE_CHECKING
 
-from log import arg_to_log_level
 from rlime.src.rlime import rlime_lime, utils
 from rlime.src.rlime.rlime import HyperParam, explain_instance
-from rlime.src.rlime.rlime_types import Classifier, Dataset, IntArray, Rule
 from rlime.src.rlime.sampler import Sampler
-from sklearn.ensemble import RandomForestClassifier  # type: ignore
+from rlime_examples.log import arg_to_log_level
+from sklearn.ensemble import RandomForestClassifier
 from tqdm import tqdm
+
+if TYPE_CHECKING:
+    from rlime.src.rlime.rlime_types import (
+        Classifier,
+        Dataset,
+        FloatArray,
+        IntArray,
+        Rule,
+    )
 
 logger = getLogger(__name__)
 
 
 def sample_to_csv(tab: list[tuple[str, str]], path: str) -> None:
     """Save the sample as a CSV file."""
-    with open(path, "w", encoding="utf-8") as f:
+    with Path(path).open(mode="w", encoding="utf-8") as f:
         writer = csv.writer(f)
         for feature, sample in tab:
             writer.writerow([feature, sample])
@@ -40,7 +52,7 @@ def save_weights(
         The rule information to be saved.
 
     """
-    with open(path, "w", encoding="utf-8") as f:
+    with Path(path).open(mode="w", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(weights)
         if rule_info is not None:
@@ -56,18 +68,18 @@ def main() -> None:
 
     # Load the dataset.
     dataset = utils.load_dataset(
-        "recidivism", "src/rlime/src/rlime/datasets/", balance=True,
+        "recidivism", "src/rlime/src/rlime/datasets/", balance=True
     )
 
     # Learn the black box model.
     black_box = RandomForestClassifier(n_estimators=100, n_jobs=1)
-    black_box.fit(dataset.train, dataset.labels_train)
+    black_box.fit(dataset.train, dataset.labels_train)  # type: ignore
 
     # Get the target instances.
     sample_num = 50
     idx_list = list(range(sample_num))
-    trgs = []
-    labels_trgs = []
+    trgs: list[IntArray] = []
+    labels_trgs: list[IntArray] = []
 
     # Save the target instances as CSV files.
     for idx in idx_list:
@@ -76,19 +88,16 @@ def main() -> None:
         labels_trgs.append(label)
         sample_to_csv(tab, f"examples/{idx:04d}.csv")
 
-    args = [
-        (idx, trg, dataset, black_box.predict)
-        for idx, trg in zip(idx_list, trgs)
-    ]
+    def predict(x: FloatArray) -> IntArray:
+        return black_box.predict(x).astype(int)  # type: ignore
+
+    args = [(idx, trg, dataset, predict) for idx, trg in zip(idx_list, trgs)]
     with multiprocessing.Pool() as pool:
         pool.starmap(generate_lime_and_rlime, tqdm(args))
 
 
 def generate_lime_and_rlime(
-    idx: int,
-    trg: IntArray,
-    dataset: Dataset,
-    black_box: RandomForestClassifier,
+    idx: int, trg: IntArray, dataset: Dataset, black_box: Classifier
 ) -> None:
     """Generate the LIME and R-LIME explanations for the given sample."""
     logger.info("Target instance: %s", idx)
@@ -112,12 +121,12 @@ def generate_lime_and_rlime(
 
 
 def generate_lime(
-    trg: IntArray, dataset: Dataset, black_box: Classifier, img_name: str,
+    trg: IntArray, dataset: Dataset, black_box: Classifier, img_name: str
 ) -> None:
     """Generate the LIME explanation for the given sample."""
     # Generate the LIME explanation.
     sampler = Sampler(trg, dataset.train, black_box, dataset.categorical_names)
-    coef, _ = rlime_lime.explain(trg, sampler, 100000)
+    coef, _ = rlime_lime.explain(trg, sampler, 100000)  # type: ignore
 
     # Save the LIME explanation as an image.
     save_weights(img_name, coef)
@@ -136,8 +145,11 @@ def generate_rlime(
     if result is None:
         logger.warning("   No explanation found. (img_name: %s)", img_name)
         return
-    names, arm = result
-    weights = list(arm.surrogate_model["LogisticRegression"].weights.values())
+    _, arm = result
+
+    weights: list[float] = list(
+        arm.surrogate_model["LogisticRegression"].weights.values()  # type: ignore
+    )
     weights = [w / sum(map(abs, weights)) for w in weights]
 
     # Save the R-LIME explanation as an image.

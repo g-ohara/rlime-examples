@@ -1,2 +1,1 @@
-def hello() -> str:
-    return "Hello from rlime-examples!"
+"""Scripts for generating examples for R-LIME."""

@@ -29,6 +29,7 @@ allow-direct-references = true
 packages = ["src/rlime_examples"]
 
 [tool.pyright]
+typeCheckingMode = "strict"
 venvPath = "."
 venv = ".venv"
 
@@ -36,7 +37,10 @@ venv = ".venv"
 exclude = ["src/rlime", ".venv"]
 line-length = 79
 indent-width = 4
+
+[tool.ruff.lint]
 select = ["ALL"]
+ignore = ["COM812", "ISC001"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -45,8 +49,7 @@ skip-magic-trailing-comma = true
 line-ending = "lf"
 
 [tool.ruff.lint.isort]
-combine-as-imports = true
-force-wrap-aliases = true
+split-on-trailing-comma = false
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"

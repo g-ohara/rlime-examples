@@ -1,3 +1,5 @@
+"""Logging utilities."""
+
 from argparse import ArgumentParser
 from logging import basicConfig
 

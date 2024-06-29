@@ -5,8 +5,8 @@ import os
 from dataclasses import dataclass
 
 import matplotlib.pyplot as plt
-from rlime.rlime_types import IntArray, Rule
-from rlime.utils import get_trg_sample, load_dataset
+from rlime.src.rlime.rlime_types import IntArray, Rule
+from rlime.src.rlime.utils import get_trg_sample, load_dataset
 
 
 @dataclass
@@ -22,7 +22,7 @@ def main() -> None:
     """The main function of the module."""
     # Load the dataset.
     dataset = load_dataset(
-        "recidivism", "src/rlime/examples/datasets/", balance=True,
+        "recidivism", "src/rlime/src/rlime/datasets/", balance=True,
     )
 
     for idx in range(50):

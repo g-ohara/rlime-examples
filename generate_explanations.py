@@ -3,12 +3,11 @@
 import csv
 import multiprocessing
 
+from rlime.src.rlime import rlime_lime, utils
+from rlime.src.rlime.rlime import HyperParam, explain_instance
+from rlime.src.rlime.rlime_types import Classifier, Dataset, IntArray, Rule
+from rlime.src.rlime.sampler import Sampler
 from sklearn.ensemble import RandomForestClassifier  # type: ignore
-
-from src.rlime import rlime_lime, utils
-from src.rlime.rlime import HyperParam, explain_instance
-from src.rlime.rlime_types import Classifier, Dataset, IntArray, Rule
-from src.rlime.sampler import Sampler
 
 
 def sample_to_csv(tab: list[tuple[str, str]], path: str) -> None:
@@ -49,7 +48,7 @@ def main() -> None:
     """The main function of the module."""
     # Load the dataset.
     dataset = utils.load_dataset(
-        "recidivism", "src/rlime/examples/datasets/", balance=True,
+        "recidivism", "src/rlime/src/rlime/datasets/", balance=True,
     )
 
     # Learn the black box model.

@@ -19,8 +19,7 @@ build-backend = "hatchling.build"
 managed = true
 dev-dependencies = [
     "pyright>=1.1.367",
-    "black>=24.4.2",
-    "isort>=5.13.2",
+    "ruff>=0.5.0",
 ]
 
 [tool.hatch.metadata]
@@ -29,5 +28,25 @@ allow-direct-references = true
 [tool.hatch.build.targets.wheel]
 packages = ["src/rlime_examples"]
 
-[tool.black]
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff]
+exclude = ["src/rlime", ".venv"]
 line-length = 79
+indent-width = 4
+select = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = true
+line-ending = "lf"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true
+
+[tool.ruff.pydocstyle]
+convention = "google"

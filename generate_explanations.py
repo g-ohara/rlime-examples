@@ -11,10 +11,7 @@ from src.rlime.rlime_types import Classifier, Dataset, IntArray, Rule
 from src.rlime.sampler import Sampler
 
 
-def sample_to_csv(
-    tab: list[tuple[str, str]],
-    path: str,
-) -> None:
+def sample_to_csv(tab: list[tuple[str, str]], path: str) -> None:
     """Save the sample as a CSV file."""
     with open(path, "w", encoding="utf-8") as f:
         writer = csv.writer(f)
@@ -37,8 +34,8 @@ def save_weights(
         The path to the CSV file.
     rule_info : tuple[Rule, float, float] | None
         The rule information to be saved.
-    """
 
+    """
     with open(path, "w", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(weights)
@@ -50,10 +47,9 @@ def save_weights(
 
 def main() -> None:
     """The main function of the module."""
-
     # Load the dataset.
     dataset = utils.load_dataset(
-        "recidivism", "src/rlime/examples/datasets/", balance=True
+        "recidivism", "src/rlime/examples/datasets/", balance=True,
     )
 
     # Learn the black box model.
@@ -90,7 +86,6 @@ def generate_lime_and_rlime(
     black_box: RandomForestClassifier,
 ) -> None:
     """Generate the LIME and R-LIME explanations for the given sample."""
-
     print(f"Target instance: {idx}")
 
     # Generate the LIME explanation and save it as an image.
@@ -112,13 +107,9 @@ def generate_lime_and_rlime(
 
 
 def generate_lime(
-    trg: IntArray,
-    dataset: Dataset,
-    black_box: Classifier,
-    img_name: str,
+    trg: IntArray, dataset: Dataset, black_box: Classifier, img_name: str,
 ) -> None:
     """Generate the LIME explanation for the given sample."""
-
     # Generate the LIME explanation.
     sampler = Sampler(trg, dataset.train, black_box, dataset.categorical_names)
     coef, _ = rlime_lime.explain(trg, sampler, 100000)
@@ -135,7 +126,6 @@ def generate_rlime(
     hyper_param: HyperParam,
 ) -> None:
     """Generate the R-LIME explanations for the given sample."""
-
     # Generate the R-LIME explanation and standardize its weights.
     result = explain_instance(trg, dataset, black_box, hyper_param)
     if result is None:

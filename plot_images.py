@@ -5,7 +5,6 @@ import os
 from dataclasses import dataclass
 
 import matplotlib.pyplot as plt
-
 from rlime.rlime_types import IntArray, Rule
 from rlime.utils import get_trg_sample, load_dataset
 
@@ -21,12 +20,12 @@ class RuleInfo:
 
 def main() -> None:
     """The main function of the module."""
-
     # Load the dataset.
-    dataset = load_dataset("recidivism", "src/rlime/examples/datasets/", balance=True)
+    dataset = load_dataset(
+        "recidivism", "src/rlime/examples/datasets/", balance=True,
+    )
 
     for idx in range(50):
-
         trg, _, _ = get_trg_sample(idx, dataset)
 
         # Load the weights.
@@ -47,7 +46,6 @@ def main() -> None:
             plot_weights(weights, dataset.feature_names, img_name=img_name)
 
         for tau in [70, 80, 90]:
-
             # Load the weights.
             csv_name = f"examples/newlime-{idx:04d}-{tau}.csv"
             result = load_weights(
@@ -84,10 +82,11 @@ def load_weights(
     path : str
         The path to the CSV file.
 
-    Returns
+    Returns:
     -------
     tuple[list[float], RuleInfo | None]
         The weights and the rule information.
+
     """
 
     def get_names(
@@ -97,8 +96,7 @@ def load_weights(
         categorical_names: dict[int, list[str]],
         ordinal_features: list[int],
     ) -> list[str]:
-        """get the names of the features in the rule"""
-
+        """Get the names of the features in the rule"""
         names = []
         for r in rule:
             name = categorical_names[r][int(trg[r])]
@@ -108,7 +106,7 @@ def load_weights(
         return names
 
     try:
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             reader = csv.reader(f)
             weights = list(map(float, next(reader)))
             rule_info = None
@@ -122,7 +120,9 @@ def load_weights(
                     ordinal_features,
                 )
                 precision, coverage = next(reader)
-                rule_info = RuleInfo(rule_str, float(precision), float(coverage))
+                rule_info = RuleInfo(
+                    rule_str, float(precision), float(coverage),
+                )
             except StopIteration:
                 pass
             return weights, rule_info
@@ -150,15 +150,15 @@ def plot_weights(
     img_name : str, optional
         The name of the image, by default None
 
-    Returns
+    Returns:
     -------
     None
-    """
 
+    """
     features = feature_names
     abs_values = [abs(x) for x in weights]
     _, sorted_features, sorted_values = zip(
-        *sorted(zip(abs_values, features, weights), reverse=False)[-5:]
+        *sorted(zip(abs_values, features, weights), reverse=False)[-5:],
     )
     plt.figure()
     color = [
@@ -169,9 +169,9 @@ def plot_weights(
     plt.barh(sorted_features, sorted_values, color=color)
 
     def concat_names(names: list[str]) -> str:
-        """concatenate the names to multiline string such that the string
-        length is less than the specified length"""
-
+        """Concatenate the names to multiline string such that the string
+        length is less than the specified length
+        """
         multiline_names = []
         line: list[str] = []
         line_len = 0

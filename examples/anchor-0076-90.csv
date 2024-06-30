@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Race = Black,9.00 < MonthsServed <= 24.00,Married = No,Crime against Person = No,PrisonViolations = 0,Junky = No,WorkRelease = Yes,Alcohol = No,26.00 < Age <= 33.00
+1.0,0.0007

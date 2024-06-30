@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,Race = Black,9.00 < MonthsServed <= 24.00,Crime against Person = No,Junky = No
+0.8044619422572179,0.0145

@@ -1,0 +1,2 @@
+Priors = 2,Married = No,21.00 < Age <= 26.00,Felony = No,PrisonViolations = 1,Junky = Yes,MonthsServed > 24.00,10.00 < YearsSchool <= 11.00
+0.9625,0.0001

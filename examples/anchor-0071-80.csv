@@ -1,0 +1,2 @@
+Priors = 1,PrisonViolations = 0,4.00 < MonthsServed <= 9.00,21.00 < Age <= 26.00,Crime against Property = Yes
+0.8557692307692307,0.0086

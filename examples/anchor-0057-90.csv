@@ -1,0 +1,2 @@
+Priors = 1,PrisonViolations = 0,4.00 < MonthsServed <= 9.00,10.00 < YearsSchool <= 11.00,Junky = No,Supervised Release = Yes,WorkRelease = No,Race = Black
+0.9368029739776952,0.0035

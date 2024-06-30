@@ -1,0 +1,2 @@
+Married = Yes,4.00 < MonthsServed <= 9.00,21.00 < Age <= 26.00,WorkRelease = Yes,Alcohol = No,Gender = Male,Crime against Person = No,Junky = No,Race = Black,10.00 < YearsSchool <= 11.00,PrisonViolations = 0
+0.9492753623188406,0.0008

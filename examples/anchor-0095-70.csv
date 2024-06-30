@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Race = Black,8.00 < YearsSchool <= 10.00
+0.748040313549832,0.0202

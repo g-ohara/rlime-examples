@@ -1,0 +1,2 @@
+Priors = 2,Married = No,21.00 < Age <= 26.00,Felony = No,Crime against Person = No,PrisonViolations = 1,MonthsServed > 24.00
+0.8488576449912126,0.0037

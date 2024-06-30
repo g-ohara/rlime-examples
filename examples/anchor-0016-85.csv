@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,YearsSchool > 11.00,WorkRelease = Yes,Supervised Release = Yes,Alcohol = No,Married = No
+0.8651535380507344,0.0054

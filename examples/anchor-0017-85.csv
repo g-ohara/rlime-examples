@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,PrisonViolations = 0,Crime against Property = No
+0.8577405857740585,0.0492

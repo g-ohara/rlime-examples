@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,8.00 < YearsSchool <= 10.00,Felony = No
+0.794074074074074,0.0367

@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,Gender = Male,Alcohol = No,MonthsServed <= 4.00,26.00 < Age <= 33.00,Felony = No
+0.7980132450331126,0.0025

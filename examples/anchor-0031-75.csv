@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,9.00 < MonthsServed <= 24.00,Race = Black
+0.7745222929936306,0.0157

@@ -1,0 +1,2 @@
+Priors = 1,PrisonViolations = 0,4.00 < MonthsServed <= 9.00,10.00 < YearsSchool <= 11.00,Supervised Release = Yes
+0.8593481989708405,0.0103

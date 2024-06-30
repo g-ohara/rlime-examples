@@ -1,0 +1,2 @@
+Priors = 2,Crime against Property = Yes,Felony = No,9.00 < MonthsServed <= 24.00,WorkRelease = Yes,Supervised Release = Yes,Crime against Person = No,Gender = Male,Age > 33.00,Race = White,PrisonViolations = 0
+0.8552380952380952,0.0006

@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,WorkRelease = Yes,Race = White,PrisonViolations = 0
+0.8904593639575972,0.0165

@@ -1,0 +1,2 @@
+Priors = 2,Race = Black,WorkRelease = No,Gender = Male,Felony = Yes,MonthsServed > 24.00,Crime against Person = Yes,YearsSchool <= 8.00,PrisonViolations = 0
+0.8681318681318682,0.0008

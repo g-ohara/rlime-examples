@@ -1,0 +1,2 @@
+Priors = 1,Alcohol = No,10.00 < YearsSchool <= 11.00,Gender = Male,Supervised Release = Yes,9.00 < MonthsServed <= 24.00,Felony = Yes
+0.7553041018387553,0.0079

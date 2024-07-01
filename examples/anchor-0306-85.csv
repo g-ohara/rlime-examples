@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Race = Black,Crime against Person = No,10.00 < YearsSchool <= 11.00,Felony = No,WorkRelease = Yes,Age > 33.00
+0.8804347826086957,0.0

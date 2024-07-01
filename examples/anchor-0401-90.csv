@@ -1,0 +1,2 @@
+Priors = 2,Married = No,Junky = Yes,Crime against Person = No,WorkRelease = Yes,21.00 < Age <= 26.00,10.00 < YearsSchool <= 11.00,MonthsServed <= 4.00
+0.9722222222222222,0.0007

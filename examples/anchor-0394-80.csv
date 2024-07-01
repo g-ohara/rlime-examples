@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Felony = No,Married = No,Crime against Person = No,Gender = Male,YearsSchool > 11.00,26.00 < Age <= 33.00
+0.834841628959276,0.0037

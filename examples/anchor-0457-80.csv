@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,PrisonViolations = 0,Race = White,Alcohol = No
+0.827,0.0434

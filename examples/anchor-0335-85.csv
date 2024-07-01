@@ -1,0 +1,2 @@
+Priors = 2,21.00 < Age <= 26.00,Alcohol = Yes,Supervised Release = Yes,Gender = Male,WorkRelease = No,MonthsServed <= 4.00
+0.8689138576779026,0.0023

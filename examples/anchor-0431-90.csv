@@ -1,0 +1,2 @@
+Priors = 1,PrisonViolations = 0,YearsSchool > 11.00,9.00 < MonthsServed <= 24.00,21.00 < Age <= 26.00
+0.908235294117647,0.0039

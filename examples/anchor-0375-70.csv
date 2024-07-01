@@ -1,0 +1,2 @@
+Priors = 1,Felony = No,Junky = No,Supervised Release = No,9.00 < MonthsServed <= 24.00,Alcohol = No,Crime against Person = No,Gender = Male,YearsSchool <= 8.00
+0.708779443254818,0.002

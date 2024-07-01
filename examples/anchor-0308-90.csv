@@ -1,0 +1,2 @@
+Priors = 1,WorkRelease = Yes,10.00 < YearsSchool <= 11.00,9.00 < MonthsServed <= 24.00,21.00 < Age <= 26.00,Alcohol = No,Junky = No,Married = No,Supervised Release = Yes,PrisonViolations = 1
+0.9153225806451613,0.0009

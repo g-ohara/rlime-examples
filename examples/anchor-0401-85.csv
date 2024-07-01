@@ -1,0 +1,2 @@
+Priors = 2,Married = No,21.00 < Age <= 26.00,WorkRelease = Yes,MonthsServed <= 4.00,Felony = No
+0.8675675675675676,0.001

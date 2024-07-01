@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,9.00 < MonthsServed <= 24.00,Married = No
+0.7558620689655172,0.0322

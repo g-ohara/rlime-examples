@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,Felony = Yes,Supervised Release = Yes,Junky = No,Gender = Male,PrisonViolations = 1,8.00 < YearsSchool <= 10.00,WorkRelease = No
+0.9,0.002

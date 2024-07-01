@@ -1,0 +1,2 @@
+Priors = 3,9.00 < MonthsServed <= 24.00,Crime against Property = Yes,Felony = No
+0.8828996282527881,0.0024

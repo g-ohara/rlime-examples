@@ -1,0 +1,2 @@
+Priors = 2,Race = Black,21.00 < Age <= 26.00,Married = No,PrisonViolations = 1,Crime against Person = No,Felony = No,YearsSchool <= 8.00,WorkRelease = Yes
+1.0,0.0001

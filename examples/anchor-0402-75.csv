@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,Gender = Male,Crime against Person = No,21.00 < Age <= 26.00,Alcohol = Yes
+0.8554216867469879,0.0054

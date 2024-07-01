@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Felony = No,Married = No,Supervised Release = Yes,Crime against Person = No
+0.7631851085832472,0.0274

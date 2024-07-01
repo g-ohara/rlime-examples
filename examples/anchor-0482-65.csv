@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Felony = No
+0.6880382775119617,0.0586

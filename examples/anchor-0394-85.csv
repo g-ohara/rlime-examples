@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Married = No,Felony = No,Crime against Person = No,PrisonViolations = 1,26.00 < Age <= 33.00,WorkRelease = Yes
+0.8665254237288136,0.0021

@@ -1,0 +1,2 @@
+Priors = 2,21.00 < Age <= 26.00,Alcohol = Yes,Supervised Release = Yes,WorkRelease = No,MonthsServed <= 4.00,Felony = No,Crime against Property = No,PrisonViolations = 0
+0.9193154034229829,0.0018

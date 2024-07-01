@@ -1,0 +1,2 @@
+Priors = 1,10.00 < YearsSchool <= 11.00,Felony = Yes,WorkRelease = Yes,9.00 < MonthsServed <= 24.00,Junky = No,Supervised Release = Yes
+0.8531353135313532,0.0018

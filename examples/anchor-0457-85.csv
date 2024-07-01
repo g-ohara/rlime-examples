@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,Race = White,PrisonViolations = 0,Junky = Yes
+0.8628472222222222,0.0085

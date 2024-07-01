@@ -1,0 +1,2 @@
+Priors = 2,Crime against Property = Yes,Supervised Release = No,Felony = No,26.00 < Age <= 33.00,Crime against Person = No,PrisonViolations = 1,9.00 < MonthsServed <= 24.00
+0.9850746268656716,0.0007

@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Felony = No,Married = No
+0.7319711538461539,0.0434

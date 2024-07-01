@@ -1,0 +1,2 @@
+Priors = 2,PrisonViolations = 1,Alcohol = Yes,21.00 < Age <= 26.00,9.00 < MonthsServed <= 24.00,YearsSchool <= 8.00
+0.9510204081632653,0.0009

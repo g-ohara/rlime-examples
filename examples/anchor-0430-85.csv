@@ -1,0 +1,2 @@
+4.00 < MonthsServed <= 9.00,Priors = 1,8.00 < YearsSchool <= 10.00,Alcohol = No,Supervised Release = Yes,PrisonViolations = 1,Age <= 21.00
+0.9060773480662984,0.0077

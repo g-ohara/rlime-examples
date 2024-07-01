@@ -1,0 +1,2 @@
+Priors = 1,10.00 < YearsSchool <= 11.00,Alcohol = No,9.00 < MonthsServed <= 24.00,Felony = Yes,Supervised Release = Yes,PrisonViolations = 1,Crime against Property = Yes,WorkRelease = No,Gender = Male,Junky = Yes
+0.8664772727272727,0.0001

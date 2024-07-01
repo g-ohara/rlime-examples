@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Crime against Person = No,Married = No,Felony = No,Gender = Male,YearsSchool > 11.00,26.00 < Age <= 33.00,Alcohol = No,Race = White
+0.9211956521739131,0.0009

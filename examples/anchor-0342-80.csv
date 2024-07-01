@@ -1,0 +1,2 @@
+Priors = 1,10.00 < YearsSchool <= 11.00,Felony = Yes,9.00 < MonthsServed <= 24.00,Alcohol = No,Supervised Release = Yes,Crime against Person = No,Gender = Male,PrisonViolations = 1,WorkRelease = No,Crime against Property = Yes
+0.8008849557522124,0.0021

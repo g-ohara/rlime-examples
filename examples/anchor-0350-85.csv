@@ -1,0 +1,2 @@
+Priors = 2,Married = No,MonthsServed > 24.00,Felony = Yes,WorkRelease = Yes,Supervised Release = Yes,Crime against Property = No,YearsSchool <= 8.00,Crime against Person = No
+0.8709055876685935,0.0006

@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Race = Black,Crime against Person = No,Alcohol = Yes,Gender = Male,Supervised Release = Yes
+0.8028169014084507,0.0053

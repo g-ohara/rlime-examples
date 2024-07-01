@@ -1,0 +1,2 @@
+Priors = 2,Married = No,Race = Black,Felony = Yes,MonthsServed > 24.00,Crime against Person = No,Supervised Release = Yes,Gender = Male,WorkRelease = Yes,YearsSchool <= 8.00
+0.7992700729927007,0.0014

@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Race = Black,Alcohol = Yes
+0.7278820375335121,0.0106

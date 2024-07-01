@@ -1,0 +1,2 @@
+Priors = 2,Married = No,Race = Black,Crime against Person = No,Gender = Male,Alcohol = No,Junky = No,4.00 < MonthsServed <= 9.00,Felony = No,PrisonViolations = 0,YearsSchool > 11.00
+0.9728260869565217,0.0011

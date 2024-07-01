@@ -1,0 +1,2 @@
+Priors = 3,Alcohol = Yes,YearsSchool <= 8.00,Married = No,Gender = Male,Supervised Release = Yes,WorkRelease = No,Age > 33.00
+0.9066666666666666,0.0011

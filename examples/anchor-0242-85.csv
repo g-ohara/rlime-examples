@@ -1,0 +1,2 @@
+Priors = 2,Married = No,Race = Black,21.00 < Age <= 26.00,MonthsServed <= 4.00,Felony = No
+0.8957597173144877,0.0042

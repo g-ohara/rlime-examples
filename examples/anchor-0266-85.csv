@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,PrisonViolations = 2,WorkRelease = Yes,MonthsServed > 24.00
+0.8709677419354839,0.0015

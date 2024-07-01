@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,9.00 < MonthsServed <= 24.00,Race = Black,Crime against Person = No,PrisonViolations = 1
+0.8156862745098039,0.0081

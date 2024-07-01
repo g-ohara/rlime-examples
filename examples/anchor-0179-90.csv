@@ -1,0 +1,2 @@
+Priors = 1,Crime against Property = No,WorkRelease = Yes,Race = White,Alcohol = No,21.00 < Age <= 26.00,8.00 < YearsSchool <= 10.00,Felony = No
+0.9227166276346604,0.0044

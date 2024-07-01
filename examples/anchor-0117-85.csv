@@ -1,0 +1,2 @@
+Priors = 2,Married = No,MonthsServed > 24.00,WorkRelease = Yes,21.00 < Age <= 26.00,Supervised Release = Yes
+0.8596491228070176,0.0125

@@ -1,0 +1,2 @@
+Priors = 2,Married = No,Crime against Person = No,Gender = Male,Alcohol = No,WorkRelease = Yes,MonthsServed <= 4.00,YearsSchool <= 8.00,Felony = No
+0.9183673469387755,0.0012

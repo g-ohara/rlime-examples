@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,PrisonViolations = 1,Alcohol = Yes,21.00 < Age <= 26.00,MonthsServed > 24.00
+0.9761904761904762,0.0009

@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,8.00 < YearsSchool <= 10.00,Felony = No,Supervised Release = Yes,Race = Black,Alcohol = No,Junky = No,Gender = Male,Age <= 21.00
+0.9439252336448598,0.0066

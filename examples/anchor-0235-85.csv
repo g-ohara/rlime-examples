@@ -1,0 +1,2 @@
+Priors = 1,PrisonViolations = 0,Race = White,MonthsServed <= 4.00,26.00 < Age <= 33.00
+0.9037037037037037,0.0083

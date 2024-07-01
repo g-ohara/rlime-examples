@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Felony = No,Race = Black,Married = No,Crime against Person = No,PrisonViolations = 1
+0.9146067415730337,0.0113

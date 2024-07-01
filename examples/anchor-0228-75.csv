@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Supervised Release = Yes,21.00 < Age <= 26.00,Alcohol = Yes
+0.7987220447284346,0.0057

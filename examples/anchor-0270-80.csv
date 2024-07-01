@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,WorkRelease = Yes,21.00 < Age <= 26.00
+0.845514950166113,0.0152

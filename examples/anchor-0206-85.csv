@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,21.00 < Age <= 26.00,Race = White,Crime against Property = Yes
+0.9333333333333333,0.0037

@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,WorkRelease = Yes
+0.7836065573770492,0.039

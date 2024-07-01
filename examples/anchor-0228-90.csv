@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,21.00 < Age <= 26.00,Alcohol = Yes,Gender = Male,Supervised Release = Yes,Junky = No,PrisonViolations = 0,Felony = Yes,Crime against Property = No,Race = White,WorkRelease = Yes,Crime against Person = Yes
+1.0,0.0

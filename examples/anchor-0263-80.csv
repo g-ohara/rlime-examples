@@ -1,0 +1,2 @@
+Priors = 0,MonthsServed <= 4.00,Married = No,8.00 < YearsSchool <= 10.00,Crime against Property = No,Supervised Release = Yes,Gender = Male
+0.8187732342007435,0.0035

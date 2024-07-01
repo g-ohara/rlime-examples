@@ -1,0 +1,2 @@
+Priors = 2,Crime against Property = Yes,Race = Black,Felony = No,10.00 < YearsSchool <= 11.00,Alcohol = No,Crime against Person = No,WorkRelease = Yes,Gender = Male,Supervised Release = Yes,Junky = No,MonthsServed <= 4.00,PrisonViolations = 0,Married = Yes,26.00 < Age <= 33.00
+1.0,0.0

@@ -1,0 +1,2 @@
+Priors = 2,21.00 < Age <= 26.00,Race = Black,MonthsServed <= 4.00
+0.7797356828193832,0.0061

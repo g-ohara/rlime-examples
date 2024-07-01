@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,Race = White
+0.7683557394002068,0.0807

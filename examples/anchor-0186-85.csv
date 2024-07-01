@@ -1,0 +1,2 @@
+Priors = 3,9.00 < MonthsServed <= 24.00,Alcohol = Yes,PrisonViolations = 1
+0.8917910447761194,0.0033

@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Felony = No,Supervised Release = Yes
+0.705926481620405,0.0407

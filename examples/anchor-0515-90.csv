@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Felony = No,Supervised Release = Yes,Crime against Person = No,Junky = No,Gender = Male,WorkRelease = Yes,Age > 33.00,PrisonViolations = 0,Race = White,Married = Yes,YearsSchool <= 8.00,Alcohol = No
+1.0,0.0008

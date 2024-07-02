@@ -1,0 +1,2 @@
+Priors = 2,Crime against Property = Yes,Race = Black,10.00 < YearsSchool <= 11.00,Crime against Person = No,9.00 < MonthsServed <= 24.00,PrisonViolations = 0
+0.868,0.0022

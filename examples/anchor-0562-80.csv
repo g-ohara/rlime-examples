@@ -1,0 +1,2 @@
+Priors = 2,Race = Black,Crime against Person = No,Alcohol = No,Junky = No,Felony = No,Gender = Male,MonthsServed <= 4.00,YearsSchool <= 8.00,26.00 < Age <= 33.00
+0.8755186721991701,0.0012

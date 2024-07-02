@@ -1,0 +1,2 @@
+Priors = 1,4.00 < MonthsServed <= 9.00,YearsSchool > 11.00,PrisonViolations = 0
+0.8579439252336448,0.0208

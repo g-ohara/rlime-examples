@@ -1,0 +1,2 @@
+Priors = 3,9.00 < MonthsServed <= 24.00,Alcohol = Yes
+0.8661257606490872,0.0052

@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,9.00 < MonthsServed <= 24.00,Race = Black,Married = No,Supervised Release = No
+0.8418491484184915,0.0045

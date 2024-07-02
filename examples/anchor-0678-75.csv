@@ -1,0 +1,2 @@
+Priors = 1,Crime against Property = No,Junky = No,10.00 < YearsSchool <= 11.00,Felony = No,Supervised Release = Yes,WorkRelease = No,Crime against Person = No,Gender = Male,PrisonViolations = 1,Age <= 21.00,9.00 < MonthsServed <= 24.00
+0.8106060606060606,0.0002

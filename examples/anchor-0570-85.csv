@@ -1,0 +1,2 @@
+Priors = 3,9.00 < MonthsServed <= 24.00,Felony = No,Race = Black
+0.8615863141524106,0.0062

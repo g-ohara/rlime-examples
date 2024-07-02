@@ -1,0 +1,2 @@
+4.00 < MonthsServed <= 9.00,Race = White,Junky = No,Alcohol = No,Supervised Release = Yes,Gender = Male,PrisonViolations = 1,Crime against Property = Yes,Crime against Person = No,Felony = No,Priors = 2,YearsSchool <= 8.00,WorkRelease = No
+1.0,0.0001

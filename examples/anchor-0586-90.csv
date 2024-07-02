@@ -1,0 +1,2 @@
+Race = White,4.00 < MonthsServed <= 9.00,PrisonViolations = 0,Crime against Property = No,8.00 < YearsSchool <= 10.00,Married = No,Alcohol = No,Junky = No,Supervised Release = No,Crime against Person = No,Gender = Male,Age <= 21.00
+0.926530612244898,0.0

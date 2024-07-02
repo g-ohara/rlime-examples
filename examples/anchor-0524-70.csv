@@ -1,0 +1,2 @@
+Priors = 2,9.00 < MonthsServed <= 24.00,Crime against Person = No,Junky = Yes,PrisonViolations = 1
+0.7526455026455027,0.007

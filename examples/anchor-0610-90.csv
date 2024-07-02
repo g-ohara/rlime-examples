@@ -1,0 +1,2 @@
+Priors = 2,Crime against Property = Yes,Married = No,Felony = No,WorkRelease = Yes,MonthsServed <= 4.00,Gender = Male,Alcohol = No
+0.9288321167883211,0.0011

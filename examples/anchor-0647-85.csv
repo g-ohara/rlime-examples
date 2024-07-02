@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,21.00 < Age <= 26.00,Alcohol = Yes,Race = Black
+0.8807947019867549,0.0032

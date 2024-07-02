@@ -1,0 +1,2 @@
+Priors = 1,YearsSchool > 11.00,9.00 < MonthsServed <= 24.00,Felony = Yes,Junky = No,Gender = Male,Age <= 21.00,Crime against Property = Yes
+0.9364548494983278,0.0022

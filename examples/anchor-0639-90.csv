@@ -1,0 +1,2 @@
+Priors = 1,Race = White,Felony = Yes,21.00 < Age <= 26.00,Junky = No,WorkRelease = No,Married = No,Alcohol = No,Crime against Person = No,MonthsServed > 24.00,Supervised Release = Yes
+0.9111675126903553,0.0012

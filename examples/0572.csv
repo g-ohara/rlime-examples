@@ -1,0 +1,16 @@
+Race,Black (0)
+Alcohol,Yes (1)
+Junky,No (0)
+Supervised Release,No (0)
+Married,Yes (1)
+Felony,No (0)
+WorkRelease,No (0)
+Crime against Property,No (0)
+Crime against Person,No (0)
+Gender,Male (1)
+Priors,3
+YearsSchool,10.00 < YearsSchool <= 11.00 (2)
+PrisonViolations,0
+Age,Age > 33.00 (3)
+MonthsServed,4.00 < MonthsServed <= 9.00 (1)
+Recidivism,Re-arrested (1)

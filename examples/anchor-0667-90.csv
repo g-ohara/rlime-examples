@@ -1,0 +1,2 @@
+Priors = 2,Crime against Property = Yes,Married = No,9.00 < MonthsServed <= 24.00,Alcohol = Yes,21.00 < Age <= 26.00
+0.9077306733167082,0.0013

@@ -1,0 +1,2 @@
+Priors = 1,YearsSchool > 11.00,9.00 < MonthsServed <= 24.00,Age <= 21.00
+0.800807537012113,0.0051

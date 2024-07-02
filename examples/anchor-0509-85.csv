@@ -1,0 +1,2 @@
+Priors = 2,Married = No,Supervised Release = No,Felony = No,Crime against Person = No,4.00 < MonthsServed <= 9.00,YearsSchool <= 8.00,Gender = Male,Age > 33.00
+0.85,0.0009

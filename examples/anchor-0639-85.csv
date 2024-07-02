@@ -1,0 +1,2 @@
+Priors = 1,Race = White,Alcohol = No,21.00 < Age <= 26.00,WorkRelease = No,MonthsServed > 24.00,Crime against Person = No,Supervised Release = Yes,PrisonViolations = 2
+0.8857868020304569,0.0014

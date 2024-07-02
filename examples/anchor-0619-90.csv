@@ -1,0 +1,2 @@
+Race = Black,9.00 < MonthsServed <= 24.00,Married = No,PrisonViolations = 1,Crime against Person = No,8.00 < YearsSchool <= 10.00,Gender = Male,Junky = No,Alcohol = No,Crime against Property = No,Felony = No,Priors = 1,WorkRelease = No,21.00 < Age <= 26.00
+1.0,0.0006

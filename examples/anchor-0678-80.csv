@@ -1,0 +1,2 @@
+Priors = 1,Crime against Property = No,Junky = No,WorkRelease = No,Supervised Release = Yes,Alcohol = No,9.00 < MonthsServed <= 24.00,Crime against Person = No,Gender = Male,Felony = No,Married = No,Age <= 21.00,Race = Black,10.00 < YearsSchool <= 11.00,PrisonViolations = 1
+1.0,0.0006

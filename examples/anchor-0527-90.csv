@@ -1,0 +1,2 @@
+Priors = 1,Race = White,10.00 < YearsSchool <= 11.00,21.00 < Age <= 26.00,Junky = No,Married = No,Alcohol = No
+0.9216101694915254,0.0018

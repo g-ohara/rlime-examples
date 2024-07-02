@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,Race = Black,Supervised Release = No,21.00 < Age <= 26.00,Alcohol = Yes,Crime against Person = Yes
+0.9625,0.0001

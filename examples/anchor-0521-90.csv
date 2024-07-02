@@ -1,0 +1,2 @@
+Priors = 1,MonthsServed <= 4.00,Race = White,Felony = Yes
+0.9082969432314411,0.0072

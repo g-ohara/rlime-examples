@@ -1,0 +1,2 @@
+Priors = 2,8.00 < YearsSchool <= 10.00,Married = No,9.00 < MonthsServed <= 24.00,Felony = No,Supervised Release = Yes,Crime against Person = No
+0.8191603875134553,0.0125

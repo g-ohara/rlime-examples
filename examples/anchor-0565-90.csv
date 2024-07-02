@@ -1,0 +1,2 @@
+Priors = 1,PrisonViolations = 0,YearsSchool > 11.00,Race = White,4.00 < MonthsServed <= 9.00,Felony = Yes
+0.9303621169916435,0.0053

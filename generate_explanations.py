@@ -62,9 +62,7 @@ def main() -> None:
     arg_to_log_level()
 
     # Load the dataset.
-    dataset = utils.load_dataset(
-        "recidivism", "src/rlime/src/rlime/datasets/", balance=True
-    )
+    dataset = utils.load_dataset("recidivism", balance=True)
 
     # Learn the black box model.
     black_box = RandomForestClassifier(n_estimators=100, n_jobs=1)
